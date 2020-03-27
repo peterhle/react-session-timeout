@@ -22,11 +22,11 @@ export default function SessionTimeout() {
     clearInterval(countdownInterval);
   };
 
-  const handleLogout = () => {
+  const handleLogout = (isTimedOut = false) => {
     setTimeoutModalOpen(false);
     clearSessionInterval();
     clearSessionTimeout();
-    handleLogoutUser(false);
+    handleLogoutUser(isTimedOut);
   };
 
   const handleContinue = () => {
@@ -43,17 +43,17 @@ export default function SessionTimeout() {
   };
 
   const onIdle = () => {
-    const delay = 1000 * 15 * 1;
+    const delay = 1000 * 5 * 1;
     if (isAuthenticated && !timeoutModalOpen) {
       timeout = setTimeout(() => {
-        let countDown = 60;
+        let countDown = 10;
         setTimeoutModalOpen(true);
         setTimeoutCountdown(countDown);
         countdownInterval = setInterval(() => {
           if (countDown > 0) {
             setTimeoutCountdown(--countDown);
           } else {
-            handleLogout();
+            handleLogout(true);
           }
         }, 1000);
       }, delay);
@@ -72,7 +72,7 @@ export default function SessionTimeout() {
       <SessionTimeoutDialog
         countdown={timeoutCountdown}
         onContinue={handleContinue}
-        onLogout={handleLogout}
+        onLogout={() => handleLogout(false)}
         open={timeoutModalOpen}
       />
     </>

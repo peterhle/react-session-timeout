@@ -58,7 +58,7 @@ export function AppStateProvider({ children }) {
   /**
    * handle log out.
    */
-  function handleLogoutUser(isTimedOut) {
+  function handleLogoutUser(isTimedOut = false) {
     dispatch({ type: LOGOUT, isTimedOut });
     navigate("/");
   }
