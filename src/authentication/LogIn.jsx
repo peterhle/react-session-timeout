@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {AppStateContext} from "../contexts/AppStateContext";
-import Paper from "@material-ui/core/Paper";
-import {ErrorOutline} from "@material-ui/icons";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 
@@ -58,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-  const {handleAuthenticateUser, isTimedOut} = useContext(AppStateContext);
+  const {handleAuthenticateUser} = useContext(AppStateContext);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -105,24 +103,6 @@ export default function SignIn() {
           </Button>
         </form>
       </div>
-      {isTimedOut && (
-        <>
-          <Typography className={classes.title}>Session Timed Out</Typography>
-          <Paper elevation={0} className={classes.timeoutPaper}>
-            <ErrorOutline className={classes.icon} />
-            <div className={classes.message}>
-              <Typography>
-                  <span className={classes.placeholderText}>
-                    Your current session has timed out.
-                  </span>
-                <div className={classes.placeholderText}>
-                  Please log in again to continue.
-                </div>
-              </Typography>
-            </div>
-          </Paper>
-        </>
-      )}
     </Container>
   );
 }

@@ -3,8 +3,7 @@ import { navigate } from "@reach/router";
 import { useReducer } from "react";
 
 const initialState = {
-  isAuthenticated: false,
-  isTimedOut: false
+  isAuthenticated: false
 };
 
 const initialAppStateContext = {
@@ -29,8 +28,7 @@ const appStateReducer = (state, action) => {
       };
     case LOGOUT:
       return {
-        ...initialState,
-        isTimedOut: action.isTimedOut
+        ...initialState
       };
     default:
       throw new Error("Unknown action in AppStateContext appStateReducer");
@@ -58,8 +56,8 @@ export function AppStateProvider({ children }) {
   /**
    * handle log out.
    */
-  function handleLogoutUser(isTimedOut) {
-    dispatch({ type: LOGOUT, isTimedOut });
+  function handleLogoutUser() {
+    dispatch({ type: LOGOUT });
     navigate("/");
   }
 

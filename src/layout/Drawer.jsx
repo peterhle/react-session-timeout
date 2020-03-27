@@ -77,7 +77,7 @@ export default function Drawer({ children }) {
         className={clsx(classes.supports, classes.logoutButton)}
         disableRipple
         disableFocusRipple
-        onClick={() => handleLogoutUser(false)}
+        onClick={() => handleLogoutUser()}
       >
         <Typography variant="body2">Logout</Typography>
       </Button>
